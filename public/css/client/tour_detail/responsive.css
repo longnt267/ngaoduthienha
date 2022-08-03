@@ -1,0 +1,151 @@
+/* Mobile */
+@media (max-width: 768px) {
+    .width-default {
+        width: 100%!important;
+    }
+    
+    .row{
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .tour-gallery {
+        width: 100%;
+    }
+
+    .bread-crumb {
+        margin-top: 0;
+    }
+
+    .content {
+        margin-top: 25px;
+    }
+
+    .glr-item {
+        height: 355px;
+    }
+
+    .glr-item img {
+        height: 355px;
+    }
+
+    #child-glr img {
+        height: 60px !important;
+    }
+ 
+    button.owl-prev, button.owl-next {
+        top: 30%;
+    }
+
+    .main-content {
+        width: 100%;
+    }
+
+    .interactive {
+        font-size: 16px;
+    }
+
+    .checkout {
+        margin: 0;
+    }
+
+    .wrap-item {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .tg-title-2 span {
+        font-size: 12px;
+    }
+
+    .tg-title-2 img {
+        margin: 7px 7px 0 1px;
+    }
+
+    .wrap-all {
+        width: 100%;
+    }
+
+    .all-review {
+        width: 108px;
+    }
+
+    .crossbar {
+        width: 115px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1025px) {
+    .width-default {
+        width: 100%!important;
+    }
+
+    .wrap-menu {
+        padding: 15px 12px;
+    }
+
+    .wrap-item {
+        width: calc(calc(100% / 2) + -10px);
+        margin-bottom: 115px;
+    }
+
+    .part-top {
+        height: 85%;
+    }
+
+    .all-review {
+        width: 113px;
+    }
+
+    .wrap-input input[type="text"] {
+        width: 89px;
+    }
+
+    .bread-crumb {
+        margin-top: 0;
+    }
+}
+
+/* responsive menu  and footer*/
+@media (max-width: 1399px) {
+    .wrap-menu {
+        position: relative;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .wrap-logo {
+        width: 100%;
+        border-bottom: 1px solid #FFFFFF;
+    }
+
+    .logo {
+        width: 95%;
+        height: 87px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: auto;
+    }
+
+    .btn-menu {
+        position: absolute;
+        top: 50px;
+        right: 0;
+    }
+
+    .btn-menu i {
+        display: block;
+    }
+
+    .wrap-footer {
+        height: 600px;
+    }
+}

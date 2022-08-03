@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html,
+body {
+    margin: auto;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
