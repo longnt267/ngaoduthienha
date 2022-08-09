@@ -21,7 +21,7 @@
         </div>
         <div class="col-lg-2">
             <select id="method-box" class="select2" style="width: 100%!important;">
-                <option selected disabled hidden>Select payment_status</option>
+                <option selected disabled hidden>Select payment status</option>
                 <option value="">All</option>
                 <option value="1">Unpaid</option>
                 <option value="2">Paid</option>
@@ -32,7 +32,7 @@
                 <option selected disabled hidden>Select status</option>
                 <option value="">All</option>
                 <option value="1">New</option>
-                {{--  <option value="2">Confirmed</option>  --}}
+                <option value="2">Confirmed</option> 
                 <option value="3">Cancelled</option>
                 <option value="4">Complete</option>
             </select>
@@ -46,7 +46,6 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Booking Code</th>
                     <th>Fullname</th>
                     <th>Number people</th>
                     <th>Departure date</th>

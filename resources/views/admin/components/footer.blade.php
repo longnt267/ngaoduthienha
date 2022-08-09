@@ -1,3 +1,3 @@
 <footer class="footer text-center">
-    All Rights Reserved by QUOCMINH. Designed and Developed by QQM</a>.
+    All Rights Reserved by Thanh Long.</a>.
 </footer>

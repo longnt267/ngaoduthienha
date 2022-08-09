@@ -9,12 +9,13 @@ use Session;
 use Carbon\Carbon;
 use App\Models\Mail;
 use App\Models\Tour;
-
+use App\Jobs\SendReviewJob;
 class Booking extends Model
 {
     use HasFactory;
 
     const BOOKING_COMPLETED = 4;
+    const BOOKING_CONFIRM = 2;
     const BOOKING_CANCELD = 3;
     const PAID = 2;
     const UNPAID = 1;
@@ -97,20 +98,11 @@ class Booking extends Model
             $request->request->add(['number_people' => $booking['number_people']]);
             $request->request->add(['total_price' => $booking['total_price']]);
             $model = $this->create($request->all());
-            $this->generateBookingCode($model->id);
             $this->resetSession();
-            $this->sendMailBooking($model->id);
             return $model;
         } catch (\Throwable $th) {
             return 0;
         }
-    }
-
-    public function generateBookingCode($id)
-    {
-        $model = $this->findOrFail($id);
-        $model->booking_code = 'nd-'.str_pad($id, 4, '0', STR_PAD_LEFT);
-        $model->save();
     }
 
     public function sendMailBooking($id)
@@ -124,6 +116,17 @@ class Booking extends Model
     public function getBookingById($id)
     {
         return $this->findOrFail($id);
+    }
+
+    public function sendMailReview($id) {
+        $booking = $this->findOrFail($id);
+        
+        $token = base64_encode(json_encode([
+            "booking_id" => $id,
+            "email" => $booking->email
+        ]));
+        $url = route('review.viewReview', $token);
+        dispatch(new SendReviewJob($booking, $url));
     }
 
     public function formatBookingData($booking)
@@ -185,6 +188,17 @@ class Booking extends Model
     {
         $booking = $this->getBookingById($id);
         $booking->status = $status;
+        $booking->save();
+
+        if ($status == 4) {
+            
+        }
+    }
+
+    public function changePaymentStatus($payment_status, $id)
+    {
+        $booking = $this->getBookingById($id);
+        $booking->payment_status = $payment_status;
         $booking->save();
     }
 

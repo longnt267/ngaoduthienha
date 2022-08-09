@@ -61,8 +61,8 @@
                     <th>Price</th>
                     <th>Trending</th>
                     <th>Status</th>
+                    <th class="text-center">More Info</th>
                     <th>Action</th>
-                    <th>More Action</th>
                 </tr>
             </thead>
         </table>
@@ -95,12 +95,12 @@
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', width: '5%', class: 'align-middle', orderable: false},
                     {data: 'title', name: 'title', width: '20%', class: 'align-middle', orderable: false },
-                    {data: 'image', name: 'image', width: '10%', class: 'align-middle', orderable: false},
-                    {data: 'price', name: 'price', width: '10%', class: 'align-middle', orderable: false},
-                    {data: 'trending', name: 'trending', width: '10%', class: 'align-middle', orderable: false},
-                    {data: 'status', name: 'status', width: '10%', class: 'align-middle', orderable: false},
-                    {data: 'action', name: 'action', width: '15%', class: 'align-middle', orderable: false},
+                    {data: 'image', name: 'image', width: '10%', class: 'align-middle text-center', orderable: false},
+                    {data: 'price', name: 'price', width: '10%', class: 'align-middle text-center', orderable: false},
+                    {data: 'trending', name: 'trending', width: '5%', class: 'align-middle text-center', orderable: false},
+                    {data: 'status', name: 'status', width: '5%', class: 'align-middle text-center', orderable: false},
                     {data: 'more', name: 'more', width: '10%', class: 'align-middle', orderable: false},
+                    {data: 'action', name: 'action', width: '15%', class: 'align-middle text-center', orderable: false},
                 ]
             });
 

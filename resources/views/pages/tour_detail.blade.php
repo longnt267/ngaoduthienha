@@ -271,44 +271,17 @@
                             </div>
                         </div>
                         <div class="section">
-                            <div class="type-comment">
-                                <img src="{{ asset('assets/images/user.png') }}" alt="">
-                                <form action="javascript:void(0)" id="form-review"
-                                    data-action="{{ route('review.store', $tour->id) }}">
-                                    <input type="text" name="star" id="input-star" value="4" hidden="true">
-                                    <textarea name="comment" id="input-comment" placeholder="Type something" cols="30"
-                                        rows="10"></textarea>
-                                    @error('comment')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                    <div class="wrap-rating-star">
-                                        <span class="rating-star">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </span>
-                                        <input type="submit" id="review-submit" value="Upload review">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="section">
                             <div class="wrap-comment" data-base-url="{{ route('review.fetch', $tour->id) }}">
                                 @include('components.review', ['reviews' => $reviews->getAllReviews($tour->id)])
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-4 checkout">
                 <div class="chkout-top">
-                    <p>from <span>{{ number_format($tour->price, 0, '', ',') }} đ</span></p>
+                    <p>from $ <span>{{ $tour->price }}</span></p>
                 </div>
                 <div class="chkout-bot">
                     <div class="ckhout-bot-info">
@@ -338,7 +311,7 @@
                         </div>
                         <div class="total">
                             <span>Total</span>
-                            <strong id="total">{{ number_format($tour->price, 0, '', ',') }} đ</strong>
+                            <strong>$<span id="total">{{ $tour->price }}</span></strong>
                             <input type="text" class="d-none" name="total_price" id="total_price">
                         </div>
                         <input type="text" name="duration" id="duration" class="d-none"
@@ -384,7 +357,7 @@
                                     <span>{{ $tourRelated->convertDuration($tourRelated->duration) }}</span>
                                 </div>
                                 <div class="sl2-if-cost">from
-                                    <strong>{{ number_format($tourRelated->price, 0, '', ',') }} đ</strong></div>
+                                    <strong>$ {{ $tourRelated->price }}</strong></div>
                             </div>
                         </div>
                     </div>

@@ -17,7 +17,6 @@ $(document).ready(function() {
         },
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex', width: '5%', class: 'align-middle', orderable: false},
-            {data: 'booking_code', name: 'booking_code', width: '15%', class: 'align-middle', orderable: false },
             {data: 'fullname', name: 'fullname', width: '20%', class: 'align-middle', orderable: false},
             {data: 'number_people', name: 'number_people', width: '10%', class: 'align-middle', orderable: false},
             {data: 'departure_date', name: 'departure_date', width: '10%', class: 'align-middle', orderable: false},

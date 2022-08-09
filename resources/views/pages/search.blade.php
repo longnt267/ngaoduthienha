@@ -53,7 +53,9 @@
                 @foreach ($tours as $tour)
                 <div class="wrap-item">
                     <div class="part-top">
-                        <img src="{{ asset('storage/upload/'.$tour->image) }}" alt="">
+                        <a href="{{ route('tour_detail', $tour->slug) }}">
+                            <img src="{{ asset('storage/upload/'.$tour->image) }}" alt="">
+                        </a>
                         <img src="{{ asset('assets/icons/outline/tamgiac.png') }}" alt="" class="flag">
                         <div class="rating">
                             <img src="{{ asset('assets/icons/outline/star.png') }}" alt="">

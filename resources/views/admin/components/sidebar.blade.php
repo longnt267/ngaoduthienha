@@ -40,6 +40,12 @@
                         class="hide-menu">Booking
                     </span></a>
                 </li>
+
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ route('article.index') }}"
+                    aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                        class="hide-menu">Article
+                    </span></a>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

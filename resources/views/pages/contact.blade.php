@@ -46,7 +46,7 @@
                         <span class="invalid-feedback d-inline" id="feedback-email" role="alert"></span>
                         <input type="text" name="phone" id="phone" placeholder="Your phone">
                         <span class="invalid-feedback d-inline" id="feedback-phone" role="alert"></span>
-                        <textarea name="message" cols="30" rows="10" id="message" placeholder="Message"></textarea>
+                        <textarea name="message" cols="30" rows="10" id="message" placeholder="Message" style="resize: none;"></textarea>
                         <span class="invalid-feedback d-inline" id="feedback-message" role="alert"></span>
                         <div class="wrap-btn-submit">
                             <input type="submit" id="btn-submit" value="Send Message" onclick="storeContact('{{ route('contact.store') }}')">

@@ -39,6 +39,7 @@
                         <div class="form-search-item wrap-input">
                             <img src="{{ asset('assets/icons/outline/shape.png') }}">
                             <select name="destination" class="select2">
+                                <option value="{{ null }}">Choose destination</option>
                                 @foreach ($destinations as $item)
                                     <option value="{{ $item->id }}">{{ $item->title }}</option>
                                 @endforeach
@@ -47,6 +48,7 @@
                         <div class="form-search-item wrap-input">
                             <img src="{{ asset('assets/icons/outline/flag.png') }}">
                             <select name="type_tour" class="select2">
+                                <option value="{{ null }}">Choose typetour</option>
                                 @foreach ($typeTours as $item)
                                     <option value="{{ $item->id }}">{{ $item->title }}</option>
                                 @endforeach
@@ -69,9 +71,9 @@
                             <span>{{ __("Nổi bật") }}</span>
                         </div>
                         <div class="wrap-ft-1-bot">
-                            <span>200+ <p>tour</p></span>
-                            <span>100+ <p>điểm đến</p></span>
-                            <span>8+ <p>loại tour</p></span>
+                            <span>{{ $tours->count() }}+ <p>tour</p></span>
+                            <span>{{ $destinations->count() }}+ <p>điểm đến</p></span>
+                            <span>{{ $typeTours->count() }}+ <p>loại tour</p></span>
                         </div>
                     </div>
                 </div>
@@ -131,7 +133,7 @@
                                             <img src="{{ asset('storage/upload/'.$destination->image) }}" alt="">
                                         </a>
                                         <a class="location" href="{{ route('tourByDes', $destination->id) }}">{{ $destination->title }}</a>
-                                        <p class="experience">24 experience</p>
+                                        <p class="experience">{{ $destination->tours->where('status', 1)->count() }} experience</p>
                                     </div>
                                 @endif
                             @endforeach                           
@@ -181,7 +183,7 @@
                                             <img src="assets/icons/outline/time.png" alt="">
                                             <span>{{ $tour->convertDuration($tour->duration) }}</span>
                                         </div>
-                                        <div class="sl2-if-cost">from <strong>${{ $tour->price }}</strong></div>
+                                        <div class="sl2-if-cost">from <strong>$ {{ $tour->price }}</strong></div>
                                     </div>
                                 </div>
                                 @endif
@@ -231,7 +233,7 @@
                                         <img src="assets/icons/outline/time.png" alt="">
                                         <span>{{ $tour->convertDuration($tour->duration) }}</span>
                                     </div>
-                                    <div class="sl2-if-cost">from <strong>{{ number_format($tour->price, 0, '', ',') }} đ</strong></div>
+                                    <div class="sl2-if-cost">from <strong>$ {{ $tour->price }} </strong></div>
                                 </div>
                             </div>
                             @endforeach

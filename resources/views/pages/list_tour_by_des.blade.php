@@ -123,7 +123,7 @@
         <div class="row">
             <div class="content">
                 @foreach ($tours as $tour)
-                <div class="wrap-item">
+                <div class="wrap-item col-4">
                     <div class="part-top">
                         <a href="{{ route('tour_detail', $tour->slug) }}">
                             <img src="{{ asset('storage/upload/'.$tour->image) }}" alt="">

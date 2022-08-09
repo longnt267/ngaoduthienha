@@ -51,10 +51,11 @@ class BookingController extends Controller
             $totalPrice = $booking['total_price'];
             $result = $this->booking->saveRecord($request, $booking);
             if(!empty($result)) {
-                //return redirect()->route('thanks');
                 return redirect()->route('processTransaction', ['totalPrice' => $totalPrice, 'bookingID' => $result->id]);
             }
             return redirect()->back()->with('error', 'Booking fail');
+        } else {
+            return redirect()->route('home')->with('error', 'Booking fail');
         }
     }
 
@@ -64,10 +65,20 @@ class BookingController extends Controller
         $this->booking->changeStatus(4, $id);
     }
 
-    public function updateStatus(Request $request, $id)
+    public function update(Request $request, $id)
     {
         try {
+            $booking = $this->booking->findOrFail($id);
+            $old_status = $booking->status;
+            $old_payment_status = $booking->payment_status;
             $this->booking->changeStatus($request->status, $id);
+            $this->booking->changePaymentStatus($request->payment_status, $id);
+            if ($request->status == 2 && $request->payment_status == 2 && ( $old_status != $request->status || $old_payment_status != $request->payment_status )) {
+                $this->booking->sendMailBooking($id);
+            };
+            if ($request->status == 4) {
+                $this->booking->sendMailReview($id);
+            }
             return redirect()->route("booking.index")->with('message', 'Update status booking successfully');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Update status booking failed');

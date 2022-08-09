@@ -21,7 +21,7 @@
             <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
                 <tbody>
                     <tr>
-                        <td style="background:#36bea6; padding:20px; color:#fff; text-align:center;">Thank you for booking a tour.</td>
+                        <td style="background:#36bea6; padding:20px; color:#fff; text-align:center;">Thank you for completing the trip.</td>
                     </tr>
                 </tbody>
             </table>
@@ -85,6 +85,21 @@
                     </tbody>
                 </table>
             </div>
+            <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td style="background:#36bea6; padding:20px; color:#fff; text-align:center;">Please click on the link below to review the trip.</td>
+                    </tr>
+                    <tr>
+                        <td style="background:#36bea6; padding:20px; color:#fff; text-align:center;">
+                            <a href="{{ $url }}" target="_blank"
+                            style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#3AAEE0;border-radius:4px;width:auto;border-top:1px solid #3AAEE0;font-weight:400;border-right:1px solid #3AAEE0;border-bottom:1px solid #3AAEE0;border-left:1px solid #3AAEE0;padding-top:5px;padding-bottom:5px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;"><span
+                        style="padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;letter-spacing:normal;"><span
+                        dir="ltr"
+                        style="margin: 0; word-break: break-word; line-height: 32px;">Link</span></span></a></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>

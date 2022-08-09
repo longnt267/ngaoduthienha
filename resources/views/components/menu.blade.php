@@ -9,10 +9,7 @@
             <a href="{{ route('home') }}">Home</a>
             <a href="{{ route('tour') }}">Tours</a>
             <a href="{{ route('contact') }}">Contact</a>
-            <a href="#">Login</a>
-        </div>
-        <div class="btn-menu">
-            <i class="fal fa-bars"></i>
+            <a href="{{ route('login') }}">Login</a>
         </div>
     </div>
 </div>
@@ -25,7 +22,7 @@
         <a href="{{ route('home') }}">Home</a>
         <a href="{{ route('tour') }}">Tours</a>
         <a href="{{ route('contact') }}">Contact</a>
-        <a href="#">Login</a>
+        <a href="{{ route('login') }}">Login</a>
     </div>
 </div>
 

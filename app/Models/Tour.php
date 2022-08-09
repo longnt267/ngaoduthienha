@@ -185,6 +185,9 @@ class Tour extends Model
                     $pathImage = asset('storage/upload/'.$data->image);
                     return "<img  class='tb-image' src='".$pathImage."' />";
                 })
+                ->editColumn('price', function($data) {
+                    return '$ ' .$data->price;
+                })
                 ->addColumn('trending', function($data) {
                     $url = route('tour.status', ['id' => $data->id]);
                     return view('admin.elements.switch_trending', compact('data','url'));
@@ -252,7 +255,7 @@ class Tour extends Model
 
     public function getAllToursByDes($destination_id)
     {
-        $tours =  $this->where('destination_id', $destination_id)->select('*');
+        $tours =  $this->where('destination_id', $destination_id)->where('status', 1)->select('*');
         foreach($tours as $tour) {
             $tour->duration = $this->convertDuration($tour->duration);
         }
@@ -275,9 +278,9 @@ class Tour extends Model
         return $this->where('slug', $slug)->first();
     }
 
-    public function getTourByDestination($destination_id)
+    public function getTourByDestination($destination_id, $tour_id)
     {
-        return $this->where('destination_id', $destination_id)->latest()->take(6)->get();
+        return $this->where('id', '!=', $tour_id)->where('destination_id', $destination_id)->latest()->take(6)->get();
     }
 
     public function filter($request)

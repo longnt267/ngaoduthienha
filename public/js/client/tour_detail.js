@@ -219,7 +219,7 @@ $(document).ready(function () {
     };
     $("#number_people").change(function () {
         let totalPrice = $(this).data("price") * $(this).val();
-        totalPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice)
+        totalPrice = new Intl.NumberFormat('en-US', {minimumIntegerDigits: 2, useGrouping:false}).format(totalPrice);
         $("#total").text(`${totalPrice}`);
         data.number_people = $(this).val();
         data.total_price = totalPrice;
@@ -265,7 +265,6 @@ $("#review-submit").click(function () {
         },
     }).done(function (data) {
         $(".wrap-comment").html(data);
-        
     });
 });
 

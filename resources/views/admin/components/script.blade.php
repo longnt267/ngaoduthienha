@@ -33,11 +33,33 @@
 <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
 <script>
     @if (Session::has('message'))
-        toastr.success('{{ session('message') }}');
-    @endif
+        var type = "{{ Session::get('alert-type', 'info') }}";
+        console.log(type);
+        switch(type){
+        case 'info':
+        toastr.options.positionClass = 'toast-top-right';
+        toastr.info("{{ Session::get('message') }}");
+        toastr.options.timeOut = 4000;
+        break;
 
-    @if (Session::has('error'))
-        toastr.error('{{ session('error') }}');
+        case 'warning':
+        toastr.options.positionClass = 'toast-top-right';
+        toastr.options.timeOut = 4000;
+        toastr.warning("{{ Session::get('message') }}");
+        break;
+
+        case 'success':
+        toastr.options.positionClass = 'toast-top-right';
+        toastr.options.timeOut = 4000;
+        toastr.success("{{ Session::get('message') }}");
+        break;
+
+        case 'error':
+        toastr.options.positionClass = 'toast-top-right';
+        toastr.options.timeOut = 4000;
+        toastr.error("{{ Session::get('message') }}");
+        break;
+        }
     @endif
 </script>
 <script>

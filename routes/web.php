@@ -14,6 +14,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\Admin\ArticleController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -31,6 +32,9 @@ use Illuminate\Support\Facades\Auth;
 // Route client
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/thanks', [HomeController::class, 'thanks'])->name('thanks');
+Route::get('/review_success', [HomeController::class, 'review_success'])->name('review_success');
+Route::get('/review_fail', [HomeController::class, 'review_error'])->name('review_error');
+Route::get('/thanks', [HomeController::class, 'thanks'])->name('thanks');
 Route::get('/search', [HomeController::class, 'homeSearch'])->name('home.search');
 Route::get('/tours', [HomeController::class, 'tour'])->name('tour');
 Route::get('/tours/{slug}', [HomeController::class, 'tourDetail'])->name('tour_detail');
@@ -43,14 +47,22 @@ Route::post('/bookings/store', [BookingController::class, 'store'])->name('booki
 Route::get('/contacts', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contacts/store', [ContactController::class, 'store'])->name('contact.store');
 
-Route::post('/reviews/store/{tourId}', [ReviewController::class, 'store'])->name('review.store');
+Route::post('/reviews/store/{booking_id}', [ReviewController::class, 'store'])->name('review.store');
 Route::post('/reviews/{tourId}/fetch-data', [ReviewController::class, 'fetchData'])->name('review.fetch');
+
+Route::get('/reviews/{token}', [ReviewController::class, 'viewReview'])->name('review.viewReview');
 
 // Route thanh toan paypal
 // Route::get('create-transaction', [PayPalController::class, 'createTransaction'])->name('createTransaction');
 Route::get('process-transaction', [PayPalController::class, 'processTransaction'])->name('processTransaction');
 Route::get('success-transaction', [PayPalController::class, 'successTransaction'])->name('successTransaction');
 Route::get('cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('cancelTransaction');
+
+//article
+Route::get('/about_us', [HomeController::class, 'getAboutUs'])->name('about_us');
+Route::get('/term', [HomeController::class, 'getTerm'])->name('term');
+Route::get('/privacy_policy', [HomeController::class, 'getPrivacyPolicy'])->name('privacyPolicy');
+Route::get('/guest_policy', [HomeController::class, 'getGuestPolicy'])->name('guestPolicy');
 
 // Route authenticate admin
 Auth::routes(['register' => false]);
@@ -129,6 +141,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::group(['prefix' => '/{tour_id}/reviews'], function() {
             Route::get('/', [ReviewController::class, 'index'])->name('review.index');
             Route::post('/data', [ReviewController::class, 'getData'])->name('review.data');
+            Route::post('/{id}/status', [ReviewController::class, 'updateStatus'])->name('review.status');
         });
     });
 
@@ -156,8 +169,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::get('/', [BookingController::class, 'index'])->name('booking.index');
         Route::post('/data', [BookingController::class, 'getData'])->name('booking.data');
         Route::get('/{id}/detail', [BookingController::class, 'detail'])->name('booking.detail');
-        Route::post('/{id}/status', [BookingController::class, 'updateStatus'])->name('booking.status');
+        Route::post('/{id}/update', [BookingController::class, 'update'])->name('booking.update');
         Route::post('/{id}/status-payment', [BookingController::class, 'updateStatusPayment'])->name('booking.status_payment');
+    });
+
+    // Article
+    Route::group(['prefix' => 'articles'], function() {
+        Route::get('/', [ArticleController::class, 'index'])->name('article.index');
+        Route::post('/save', [ArticleController::class, 'saveData'])->name('article.save');
     });
 
 });

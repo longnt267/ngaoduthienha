@@ -7,7 +7,7 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="{{ route('admin.home') }}">
+            <a class="navbar-brand" href="{{ route('home') }}">
                 <!-- Logo icon -->
                 <b class="logo-icon">
                
@@ -72,8 +72,8 @@
                             <div class=""><img src="{{ asset('xtreme/assets/images/users/1.jpg') }}"
                                     alt="user" class="img-circle" width="60"></div>
                             <div class="ml-2">
-                                <h4 class="mb-0">Quan Minh</h4>
-                                <p class=" mb-0">quocminh@gmail.com</p>
+                                <h4 class="mb-0">Thanh Long</h4>
+                                <p class=" mb-0">long.nt2607@gmail.com</p>
                             </div>
                         </div>
                         <a class="dropdown-item" href="#"

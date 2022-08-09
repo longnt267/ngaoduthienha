@@ -29,7 +29,7 @@
                                 <div class="info-user">
                                     <div class="wrap-input-1">
                                         <label>Firstname <span style="color:#FF7B42">*</span></label>
-                                        <input type="text" name="first_name" class="form-control  @error('first_name') is-invalid @enderror" placeholder="First Name">
+                                        <input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control  @error('first_name') is-invalid @enderror" placeholder="First Name">
                                         @error('first_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="wrap-input-1">
                                         <label>Lastname <span style="color:#FF7B42">*</span></label>
-                                        <input type="text" name="last_name" placeholder="Last Name" class="form-control  @error('first_name') is-invalid @enderror">
+                                        <input type="text" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name" class="form-control  @error('first_name') is-invalid @enderror">
                                         @error('last_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="wrap-input-1">
                                         <label>Email <span style="color:#FF7B42">*</span></label>
-                                        <input type="text" name="email" placeholder="email@domain.com" class="form-control  @error('email') is-invalid @enderror">
+                                        <input type="text" name="email" value="{{ old('email') }}" placeholder="email@domain.com" class="form-control  @error('email') is-invalid @enderror">
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="wrap-input-1">
                                         <label>Phone Number <span style="color:#FF7B42">*</span></label>
-                                        <input type="text" name="phone" placeholder="Your Phone" class="form-control  @error('phone') is-invalid @enderror">
+                                        <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Your Phone" class="form-control  @error('phone') is-invalid @enderror">
                                         @error('phone')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -68,32 +68,32 @@
                                 <div class="address">
                                     <div class="wrap-input-1" style="width: 100%!important;">
                                         <label>Your Adress</label>
-                                        <input type="text" name="address" placeholder="Your Address">
+                                        <input type="text" name="address" value="{{ old('address') }}" placeholder="Your Address">
                                     </div>
-                                    {{--  <div class="info-user">
+                                     <div class="info-user">
                                         <div class="wrap-input-1">
-                                            <label>City </label>
-                                            <input type="text" name="city" placeholder="Your City">
+                                            <label>City</label>
+                                            <input type="text" name="city" value="{{ old('city') }}" placeholder="Your City">
                                         </div>
                                         <div class="wrap-input-1">
                                             <label>State/Province/Region</label>
-                                            <input type="text" name="region" placeholder="State/Province/Region">
+                                            <input type="text" name="region" value="{{ old('region') }}" placeholder="State/Province/Region">
                                         </div>
                                         <div class="wrap-input-1">
                                             <label>Zip Code/ Postal Code</label>
-                                            <input type="text" name="zip_code" placeholder="Zip Code/ Postal Code">
+                                            <input type="text" name="zip_code" value="{{ old('zip_code') }}" placeholder="Zip Code/ Postal Code">
                                         </div>
                                         <div class="wrap-input-1">
                                             <label>Country</label>
-                                            <input type="text" name="country" placeholder="Your Country">
+                                            <input type="text" name="country" value="{{ old('country') }}" placeholder="Your Country">
                                         </div>
                                     </div>
                                     <div class="special-require">
                                         <div class="wrap-input-2">
                                             <label>Special Requirement</label>
-                                            <textarea name="note" placeholder="Special Requirement"></textarea>
+                                            <textarea name="note" placeholder="Special Requirement">{{ old('note') }}</textarea>
                                         </div>
-                                    </div>  --}}
+                                    </div> 
                                 </div>
                             </div>
                         </div>
@@ -128,13 +128,12 @@
                             </div>
                             <div class="wrap-input">
                                 <img src="assets/icons/outline/dual.png" alt="">
-                                <input type="text" name="number_people" id="" value="{{ $booking['number_people'] }}">
+                                <input type="text" name="number_people" readonly value="{{ old('number_people', $booking['number_people']) }}">
                             </div>
                         </div>
                         <div class="total">
                             <span>Total</span>
-                            <strong>{{ $booking['total_price'] }}$</strong>
-                            {{--  <strong>{{ number_format($booking['total_price'], 0, '', ',') }} đ</strong>  --}}
+                            <strong>$ {{ $booking['total_price'] }}</strong>
                         </div>
                     </div>
                 </div>

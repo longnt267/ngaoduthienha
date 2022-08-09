@@ -9,17 +9,15 @@
             <div class="col-12 col-sm-12 col-lg-7 info-web">
                 <div class="row">
                     <div class="col-6 col-sm-6 col-lg-3">
-                        <a href="#">Home</a>
-                        <a href="#">About</a>
-                        <a href="#">Tours</a>
-                        <a href="#">Hotels</a>
-                        <a href="#">Contact</a>
+                        <a href="{{ route('home') }}">Home</a>
+                        <a href="{{ route('tour') }}">Tours</a>
+                        <a href="{{ route('contact') }}">Contact</a>
                     </div>
                     <div class="col-6 col-sm-6 col-lg-4">
-                        <a href="#">Partner with us</a>
-                        <a href="#">Terms & Conditions</a>
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Guest Policy</a>
+                        <a href="{{ route('about_us') }}">About us</a>
+                        <a href="{{ route('term') }}">Terms & Conditions</a>
+                        <a href="{{ route('privacyPolicy') }}">Privacy Policy</a>
+                        <a href="{{ route('guestPolicy') }}">Guest Policy</a>
                     </div>
                     <div class="col-12 col-sm-12 col-lg-5">
                         <span>

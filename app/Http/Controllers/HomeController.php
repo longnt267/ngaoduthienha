@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\Destination;
 use App\Models\Tour;
 use App\Models\TypeTour;
@@ -20,8 +21,9 @@ class HomeController extends Controller
     protected $typeTour;
     protected $booking;
     protected $dateOfTour;
+    protected $article;
 
-    public function __construct(Destination $destination, Tour $tour, TypeTour $typeTour, Booking $booking, Review $review, DateOfTour $dateOfTour)
+    public function __construct(Destination $destination, Tour $tour, TypeTour $typeTour, Booking $booking, Review $review, DateOfTour $dateOfTour, Article $article)
     {
         $this->destination = $destination;
         $this->tour = $tour;
@@ -29,6 +31,7 @@ class HomeController extends Controller
         $this->booking = $booking;
         $this->review = $review;
         $this->dateOfTour = $dateOfTour;
+        $this->article = $article;
     }
 
     public function index()
@@ -43,7 +46,19 @@ class HomeController extends Controller
     public function thanks()
     {
         return view('pages.thankyou');
-    }    
+    }  
+    
+    public function review_success()
+    {
+        $content = '<p>Your review has been submitted successfully!</p>';
+        return view('pages.review_response', compact('content'));
+    }
+
+    public function review_error()
+    {
+        $content = '<p>You have already reviewed this tour!</p>';
+        return view('pages.review_response', compact('content'));
+    }
 
     // view list of tour
     public function tour(Request $request) 
@@ -85,7 +100,7 @@ class HomeController extends Controller
             if(!empty($tour->description)) {
                 $tour->description = json_decode($tour->description);
             }
-            $toursRelateds = $this->tour->getTourByDestination($tour->destination_id);
+            $toursRelateds = $this->tour->getTourByDestination($tour->destination_id, $tour->id);
             $rating = $this->review->getInfoRating($tour->id);
             $reviews = $this->review;
             // get title both destination and typeTour
@@ -108,5 +123,26 @@ class HomeController extends Controller
             $booking = Session('Booking');
             return view('pages.checkout', compact('booking'));
         }
+    }
+
+    // article
+    public function getAboutUs() {
+        $about_us = $this->article->getByType('about us');
+        return view('pages.about_us', compact('about_us'));
+    }
+
+    public function getTerm() {
+        $term = $this->article->getByType('term');
+        return view('pages.term', compact('term'));
+    }
+
+    public function getPrivacyPolicy() {
+        $privacy_policy = $this->article->getByType('privacy policy');
+        return view('pages.privacy_policy', compact('privacy_policy'));
+    }
+
+    public function getGuestPolicy() {
+        $guest_policy = $this->article->getByType('guest policy');
+        return view('pages.guest_policy', compact('guest_policy'));
     }
 }

@@ -48,11 +48,11 @@
                 <div class="wr-field">
                     <label>Special Requirement:</label>
                 </div>
-                <textarea style="width: 100%;">
+                <p style="width: 100%;">
                     @if (!empty($booking->note))
                         {{ $booking->note }}
                     @endif
-                </textarea>
+                </p>
             </div>
             
         </div>
@@ -137,25 +137,33 @@
     </div>
 
     @if ($booking->status !== 'Completed')
-    {{--  <div class="wrap-status" style="width: 97%; margin-left: 12px;">
-        <form action="{{ route('booking.status', $booking->id) }}" method="post">
+    <div class="wrap-status" style="width: 97%; margin-left: 12px;">
+        <form action="{{ route('booking.update', $booking->id) }}" method="post">
             @csrf
             <div class="col-sm-4">
                 <label>Update status:</label>
-                <select name="status" class="select2">
-                    <option value="" selected disabled>Choose status</option>                  
-                    <option value="2">confirmed</option>
-                    <option value="3">cancel</option>
+                <select class="custom-select" name="status">
+                    <option value="" disabled>Choose status</option>                  
+                    <option value="2" {{ $booking->status == 2 ? 'selected' : '' }}>confirmed</option>
+                    <option value="3" {{ $booking->status == 3 ? 'selected' : '' }}>cancel</option>
                     @if ($booking->payment_status == 'paid')
                         <option value="4">completed</option>
                     @endif
+                </select>
+            </div>
+            <div class="col-sm-4 mt-3">
+                <label>Update payment status:</label>
+                <select class="custom-select" name="payment_status">
+                    <option value="" disabled>Choose status</option>                  
+                    <option value="1" {{ $booking->payment_status == 'unpaid' ? 'selected' : '' }}>Unpaid</option>Unpaid</option>
+                    <option value="2" {{ $booking->payment_status == 'paid' ? 'selected' : '' }}>Paid</option>
                 </select>
             </div>
             <div class="w-100 d-flex justify-content-center">
                 <input type="submit" class="btn btn-success" style="width: 200px; margin: 20px 0 20px 0;"  value="Update">
             </div>
         </form>
-    </div>  --}}
+    </div> 
     @endif
 @endsection
 

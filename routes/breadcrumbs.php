@@ -133,3 +133,11 @@ Breadcrumbs::for('booking_detail', function($trail) {
     $trail->parent('booking');
     $trail->push('Detail');
 });
+
+// --------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------
+// Dashboard > Article
+Breadcrumbs::for('article', function($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Article');
+});

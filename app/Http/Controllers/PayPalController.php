@@ -15,15 +15,6 @@ class PayPalController extends Controller
         $this->booking = $booking;
     }
 
-    //  /**
-    //  * create transaction.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function createTransaction()
-    // {
-    //     return view('transaction');
-    // }
 
     /**
      * process transaction.
@@ -52,7 +43,7 @@ class PayPalController extends Controller
                 0 => [
                     "amount" => [
                         "currency_code" => "USD",
-                        "value" => "" . round($total, 2)
+                        "value" => "" . round($request->totalPrice, 2)
                     ]
                 ]
             ]
@@ -91,7 +82,8 @@ class PayPalController extends Controller
 
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
             $this->booking->changeStatusPayment(Booking::PAID, $request->bookingID);
-            $this->booking->changeStatus(Booking::BOOKING_COMPLETED, $request->bookingID);
+            $this->booking->changeStatus(Booking::BOOKING_CONFIRM, $request->bookingID);
+            $this->booking->sendMailBooking($request->bookingID);
             return redirect()
                 ->route('thanks')
                 ->with('success', 'Transaction complete.');

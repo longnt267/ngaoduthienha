@@ -8,22 +8,23 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use App\Mail\SendReviewMail;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\BladeMail;
-
-class SendEmailJob implements ShouldQueue
+class SendReviewJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
     protected $booking;
+    protected $url;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($booking)
+    public function __construct($booking, $url)
     {
         $this->booking = $booking;
+        $this->url = $url;
     }
 
     /**
@@ -33,7 +34,7 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        $mail = new BladeMail($this->booking);
+        $mail = new SendReviewMail($this->booking, $this->url);
         Mail::to($this->booking->email)->send($mail);
     }
 }
