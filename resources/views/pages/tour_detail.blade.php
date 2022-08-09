@@ -294,7 +294,12 @@
                             <strong>{{ $tour->type_tour->title }}</strong>
                         </div>
                     </div>
-                    <form action="javascript:void(0)" id="booking-form" data-url="{{ route('booking.session') }}"
+                    <div class="mb-3">
+                        <span class="mr-5">The remaining amount:</span>
+                        <strong class="max_people mr-2"></strong>
+                        <span>people</span>
+                    </div>
+                    <form action="javascript:void(0)" id="booking-form" data-url="{{ route('booking.session') }}" data-url_check_max="{{ route('booking.checkMax') }}"
                         data-redirect="{{ route('checkout') }}">
                         <div class="wrap-input">
                             <img src="{{ asset('assets/icons/outline/date.png') }}" alt="">
@@ -306,8 +311,8 @@
                         <div class="wrap-input">
                             <img src="{{ asset('assets/icons/outline/dual.png') }}" alt="">
                             <input type="number" name="number_people" id="number_people" data-price="{{ $tour->price }}"
-                                min="1" max="{{ $tour->max_people }}" value="1">
-                            <input hidden id="max_people" value="{{ $tour->max_people }}" >
+                                min="1" value="1">
+                            <input type="number" id="max_people" hidden>
                         </div>
                         <div class="total">
                             <span>Total</span>
@@ -316,7 +321,9 @@
                         </div>
                         <input type="text" name="duration" id="duration" class="d-none"
                             value="{{ $tour->convertDuration($tour->duration) }}">
+                        <input type="number" id="duration_number" class="d-none" value="{{ $tour->duration }}">
                         <input type="text" name="tour_id" class="d-none" id="tour_id" value="{{ $tour->id }}">
+                        <input type="text" name="price" class="d-none" id="price" value="{{ $tour->price }}">
                         <input type="text" name="type_tour" class="d-none" id="type_tour"
                             value="{{ $tour->type_tour->title }}">
                         <input type="text" name="destination" class="d-none" id="destination"

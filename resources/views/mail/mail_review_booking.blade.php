@@ -74,8 +74,20 @@
                                                 <td style="font-family: 'arial'; font-size: 14px; border-top-width: 1px; border-top-color: #f6f6f6; border-top-style: solid; margin: 0; padding: 9px 0; text-align: center;">{{ $booking->departure_date }}</td>
                                                 <td style="font-family: 'arial'; font-size: 14px; border-top-width: 1px; border-top-color: #f6f6f6; border-top-style: solid; margin: 0; padding: 9px 0; text-align: center;">{{ $booking->tour->duration }}</td>
                                                 <td style="font-family: 'arial'; font-size: 14px; border-top-width: 1px; border-top-color: #f6f6f6; border-top-style: solid; margin: 0; padding: 9px 0; text-align: center;">$ {{ $booking->total_price }}</td>
-                                                <td style="font-family: 'arial'; font-size: 14px; border-top-width: 1px; border-top-color: #f6f6f6; border-top-style: solid; margin: 0; padding: 9px 0; text-align: center;">{{ $booking->payment_method }}</td>
-                                                <td style="font-family: 'arial'; font-size: 14px; border-top-width: 1px; border-top-color: #f6f6f6; border-top-style: solid; margin: 0; padding: 9px 0; text-align: center;">{{ $booking->payment_status }}</td>
+                                                <td style="font-family: 'arial'; font-size: 14px; border-top-width: 1px; border-top-color: #f6f6f6; border-top-style: solid; margin: 0; padding: 9px 0; text-align: center;">
+                                                    @switch($booking->payment_method)
+                                                        @case(2)
+                                                            {{ 'Paypal' }}                                            
+                                                            @break
+                                                        @default
+                                                            {{ '' }}
+                                                    @endswitch
+                                                </td>
+                                                <td style="font-family: 'arial'; font-size: 14px; border-top-width: 1px; border-top-color: #f6f6f6; border-top-style: solid; margin: 0; padding: 9px 0; text-align: center;">
+                                                    @if( $booking->payment_status == 2)
+                                                    {{ 'Paid' }}
+                                                    @endif
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

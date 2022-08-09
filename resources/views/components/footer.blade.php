@@ -27,7 +27,7 @@
                         </span>
                         <span>
                             <img src="{{ asset('assets/icons/outline/mail1.png') }}">
-                            <p>hello@adamotravel.com</p>;p
+                            <p>hello@travel.com</p>;p
                         </span>
                     </div>
                 </div>

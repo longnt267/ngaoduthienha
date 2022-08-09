@@ -43,6 +43,7 @@ Route::get('/destination/{destination_id}', [HomeController::class, 'tourByDes']
 Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
 Route::post('/bookings/session', [BookingController::class, 'addBooking'])->name('booking.session');
 Route::post('/bookings/store', [BookingController::class, 'store'])->name('booking.store');
+Route::get('/checkMax', [BookingController::class, 'checkMax'])->name('booking.checkMax');
 
 Route::get('/contacts', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contacts/store', [ContactController::class, 'store'])->name('contact.store');

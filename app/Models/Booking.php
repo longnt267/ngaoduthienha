@@ -97,6 +97,8 @@ class Booking extends Model
             $request->request->add(['tour_id' => $booking['tour_id']]);
             $request->request->add(['number_people' => $booking['number_people']]);
             $request->request->add(['total_price' => $booking['total_price']]);
+            $request->request->add(['price' => $booking['price']]);
+            $request->request->add(['duration' => $booking['duration']]);
             $model = $this->create($request->all());
             $this->resetSession();
             return $model;

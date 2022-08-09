@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-search-item wrap-input">
                             <img src="{{ asset('assets/icons/outline/search.png') }}">
-                            <input type="text" name="title" placeholder="Tên tour">
+                            <input type="text" name="title" placeholder="Tour name">
                         </div>
                         <div class="form-search-item wrap-input">
                             <img src="{{ asset('assets/icons/outline/shape.png') }}">
@@ -48,7 +48,7 @@
                         <div class="form-search-item wrap-input">
                             <img src="{{ asset('assets/icons/outline/flag.png') }}">
                             <select name="type_tour" class="select2">
-                                <option value="{{ null }}">Choose typetour</option>
+                                <option value="{{ null }}">Choose type of tour</option>
                                 @foreach ($typeTours as $item)
                                     <option value="{{ $item->id }}">{{ $item->title }}</option>
                                 @endforeach
@@ -56,11 +56,11 @@
                         </div>
                         <div class="form-search-item wrap-input">
                             <img src="{{ asset('assets/icons/outline/date.png') }}">
-                            <input type="number" name="duration" placeholder="Số ngày đi" min="1">
+                            <input type="number" name="duration" placeholder="Duration" min="1">
                         </div>
                         <button class="form-search-item wrap-submit border" type="submit">
                             <img src="{{ asset('assets/icons/outline/search-2.png') }}">
-                            <span>Tìm kiếm</span>
+                            <span>Search</span>
                         </button>
                     </form>
                 </div>
@@ -71,9 +71,9 @@
                             <span>{{ __("Nổi bật") }}</span>
                         </div>
                         <div class="wrap-ft-1-bot">
-                            <span>{{ $tours->count() }}+ <p>tour</p></span>
-                            <span>{{ $destinations->count() }}+ <p>điểm đến</p></span>
-                            <span>{{ $typeTours->count() }}+ <p>loại tour</p></span>
+                            <span>{{ $tours->count() }}+ <p>tours</p></span>
+                            <span>{{ $destinations->count() }}+ <p>destinations</p></span>
+                            <span>{{ $typeTours->count() }}+ <p>types of tour</p></span>
                         </div>
                     </div>
                 </div>
@@ -96,17 +96,17 @@
                 <div class="col-12 col-sm-12 col-lg-6">
                     <div class="wrap-dcr-content">
                         <div class="dcr-title">
-                            <p>Cùng với <span>NgaoduVietnam</span>, đắm chìm trong không gian hùng vĩ và những nét văn hóa đặc sắc</p>
+                            <p>Together with <span>NgaoduVietnam</span>, immerse yourself in the majestic space and unique cultural features</p>
                         </div>
                         <div class="dcr-content">
                             <img src="assets/icons/outline/water.png" alt="">
                             <div class="dst-ct-detail">
                                 <div class="ct-detail-top">
-                                    Tại đây có tất cả những gì bạn cần để có một chuyến đi vui vẻ, đáng nhớ cùng gia đình và bạn bè. Bạn có thể ngắm nhìn cảnh sắc khắp mọi nơi trên đất nước Việt Name
+                                    It has everything you need to have a fun, memorable trip with family and friends. You can see the scenery everywhere in Vietnam.
                                 </div>
                                 <br>
                                 <div class="ct-detail-bottom">
-                                    Làm việc với phong cách chuyên nghiệp, chúng tôi đảm bảo sẽ giúp bạn tìm được tour du lịch một cách nhanh chóng, thuận lợi. Đảm bảo bạn sẽ có trải nghiệm sử dụng dịch vụ một cách tốt nhất
+                                    Working with a professional style, we guarantee to help you find a tour quickly and conveniently. Make sure you have the best service experience.
                                 </div>
                             </div>
                         </div>
@@ -117,9 +117,8 @@
         <div class="slide-type-1">
             <div class="slide-header">
                 <div class="sl-hd-title">
-                    Khám phá các địa điểm du lịch thú vị
+                    Discover interesting tourist destinations
                 </div>
-                <button>View all</button>
             </div>
 
             <div class="sl-content">
@@ -146,9 +145,8 @@
          <div class="slide-type-2">
             <div class="slide-header">
                 <div class="sl-hd-title">
-                    Những nơi nghỉ ngơi tuyệt vời nhất
+                    The best places to rest
                 </div>
-                <button>View all</button>
             </div>
 
             <div class="sl2-content">
@@ -197,9 +195,8 @@
         <div class="slide-type-2">
             <div class="slide-header">
                 <div class="sl-hd-title">
-                    Tour du lịch hấp dẫn và những trải nghiệm thú vị
+                    Exciting tours and interesting experiences
                 </div>
-                <button>View all</button>
             </div>
 
             <div class="sl2-content">
@@ -245,22 +242,20 @@
 
         <!-- send email form -->
         <div class="row send-mail">
-            
-                <div class="col-12 col-sm-12 col-lg-8">
-                    <div class="se-ct">Leave us an email, <br>to get <span>the latest deals</span></div>
-                </div>
-                <div class="col-12 col-sm-12 col-lg-4">
-                    <form action="" method="post">
-                        <div class="se-ct-input">
-                            <div class="st-ct-ip-text">
-                                <img src="assets/icons/outline/email.png" alt="">
-                                <input type="text" placeholder="example@gmail.com">
-                            </div>
-                            <input type="button" value="Send">
+            <div class="col-12 col-sm-12 col-lg-8">
+                <div class="se-ct">Leave us an email, <br>to get <span>the latest deals</span></div>
+            </div>
+            <div class="col-12 col-sm-12 col-lg-4">
+                <form action="" method="post">
+                    <div class="se-ct-input">
+                        <div class="st-ct-ip-text">
+                            <img src="assets/icons/outline/email.png" alt="">
+                            <input type="text" placeholder="example@gmail.com">
                         </div>
-                    </form>
-                </div>
-            
+                        <input type="button" value="Send">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 @endsection

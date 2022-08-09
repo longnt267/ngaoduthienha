@@ -286,12 +286,12 @@ class Tour extends Model
     public function filter($request)
     {
         $tours = $this->query()
+                ->where('status', 1)
                 ->title($request)
                 ->destination($request)
                 ->duration($request)
                 ->typetour($request)
                 ->price($request);
-               
         return $tours;      
     }
 

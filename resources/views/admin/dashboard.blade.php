@@ -20,7 +20,7 @@
                             <div class="mr-2"><span class="text-primary display-5">$</span></div>
                             <div>
                                 <h3 class="font-medium mb-0">{{ $totalPay }}</h3>
-                                <span>VNĐ</span>
+                                <span>$</span>
                             </div>
                         </div>
                     </div>

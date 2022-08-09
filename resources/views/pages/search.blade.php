@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb">
-                    <a href="#" class="firt-link">Home</a>
+                    <a href="{{ route('home') }}" class="firt-link">Home</a>
                     <div class="next-link">
                         <img src="assets/icons/outline/Ellipse.png" alt="">
                         <a href="#">Tour</a>

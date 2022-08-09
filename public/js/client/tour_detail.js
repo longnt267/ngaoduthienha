@@ -225,9 +225,47 @@ $(document).ready(function () {
         data.total_price = totalPrice;
     });
 
+    let urlCheckMax = $("#booking-form").data("url_check_max");
+    $.ajax({
+        method: "GET",
+        url: urlCheckMax,
+        data: { 
+            date: function() { return $('#start-date').val() },
+            tour_id: $('#tour_id').val()
+        },
+        success: function (data) {
+            $("#number_people").attr({
+                "max" : data,
+            });
+            $("#max_people").val(data);
+            $('.max_people').html(data);
+        },
+    });
+
+    $("#start-date").on('change', function () {
+        let urlCheckMax = $("#booking-form").data("url_check_max");
+        $.ajax({
+            method: "GET",
+            url: urlCheckMax,
+            data: { 
+                date: function() { return $('#start-date').val() },
+                tour_id: $('#tour_id').val()
+            },
+            success: function (data) {
+                $("#number_people").attr({
+                    "max" : data,
+                });
+                $("#max_people").val(data);
+                $('.max_people').html(data);
+            },
+        });
+    })
+
     $("#btn-submit").click(function () {
         data.departure_date = $("#start-date").val();
         data.end_date = $("#end-date").val();
+        data.price = $("#price").val();
+        data.duration = $("#duration_number").val();
         if ($('#max_people').val() >= $("#number_people").val()) {
             saveBooking(url, data, redirect);
         }

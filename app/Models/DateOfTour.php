@@ -9,6 +9,11 @@ class DateOfTour extends Model
 {
     use HasFactory;
     protected $table = 'dates_of_tour';
+    protected $fillable = [
+        'possible_date',
+        'people',
+        'tour_id'
+    ];
 
     public function getArrayDates($id)
     {

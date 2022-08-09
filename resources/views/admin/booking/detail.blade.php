@@ -106,7 +106,6 @@
             <table class="table table-striped display" style="width:100%" id="datatable">
                 <thead>
                     <tr>
-                        <th>Booking Code</th>
                         <th>Tour</th>
                         <th>Price(per 1 person)</th>
                         <th>Number people</th>
@@ -120,12 +119,17 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th>{{ $booking->booking_code }}</th>
                         <th>{{ $tour->title }}</th>
-                        <th>{{ $tour->price }}</th>
+                        <th>{{ $booking->price }}</th>
                         <th>{{ $booking->number_people }}</th>
                         <th>{{ $booking->departure_date }}</th>
-                        <th>{{ $tour->duration }}</th>
+                        <th>
+                            @if ($booking->duration == 1)
+                                {{ 'During the day' }}
+                            @else
+                                {{ $booking->duration . 'D' . ($booking->duration - 1) . 'N' }}
+                            @endif
+                        </th>
                         <th>{{ $booking->total_price }}</th>
                         <th>{{ $booking->payment_method }}</th>
                         <th>{{ $booking->payment_status }}</th>
@@ -136,7 +140,7 @@
         </div>    
     </div>
 
-    @if ($booking->status !== 'Completed')
+    @if ($booking->status !== 'Completed' && $booking->status !== 'Cancel')
     <div class="wrap-status" style="width: 97%; margin-left: 12px;">
         <form action="{{ route('booking.update', $booking->id) }}" method="post">
             @csrf

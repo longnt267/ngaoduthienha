@@ -7,17 +7,20 @@ use Illuminate\Http\Request;
 use App\Models\Tour;
 use App\Models\Booking;
 use App\Http\Requests\BookingRequest;
+use App\Models\DateOfTour;
 use Session;
 
 class BookingController extends Controller
 {
     protected $booking;
     protected $tour;
+    protected $dateOfTour;
 
-    public function __construct(Booking $booking, Tour $tour)
+    public function __construct(Booking $booking, Tour $tour, DateOfTour $dateOfTour)
     {
         $this->booking = $booking;
         $this->tour = $tour;
+        $this->dateOfTour = $dateOfTour;
     }
 
     public function index()
@@ -51,12 +54,22 @@ class BookingController extends Controller
             $totalPrice = $booking['total_price'];
             $result = $this->booking->saveRecord($request, $booking);
             if(!empty($result)) {
+                $dateOfTour = $this->dateOfTour->where('tour_id', $result->tour_id)->where('possible_date', $result->departure_date)->first();
+                $current_people = $dateOfTour->people;
+                $dateOfTour->update(['people' => $current_people + $result->number_people]);
                 return redirect()->route('processTransaction', ['totalPrice' => $totalPrice, 'bookingID' => $result->id]);
             }
             return redirect()->back()->with('error', 'Booking fail');
         } else {
             return redirect()->route('home')->with('error', 'Booking fail');
         }
+    }
+
+    public function checkMax(Request $request) {
+        $date = $this->dateOfTour->where('tour_id', $request->tour_id)->where(DateOfTour::raw("DATE_FORMAT(possible_date,'%Y-%m-%d')"), $request->date)->first();
+        $tour = $this->tour->findOrFail($request->tour_id);
+        $max = $tour->max_people - $date->people;
+        return $max;
     }
 
     public function updateStatusPayment(Request $request, $id)
@@ -78,6 +91,11 @@ class BookingController extends Controller
             };
             if ($request->status == 4) {
                 $this->booking->sendMailReview($id);
+            }
+            if ($request->status == 3) {
+                $dateOfTour = $this->dateOfTour->where('tour_id', $booking->tour_id)->where('possible_date', $booking->departure_date)->first();
+                $current_people = $dateOfTour->people;
+                $dateOfTour->update(['people' => $current_people - $booking->number_people]);
             }
             return redirect()->route("booking.index")->with('message', 'Update status booking successfully');
         } catch (\Throwable $th) {
