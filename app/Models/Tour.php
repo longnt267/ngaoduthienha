@@ -128,6 +128,7 @@ class Tour extends Model
     
     public function saveRecord($request, $id = 0) 
     {
+
         $path = 'public\upload';
         if($request->image) {
             // storage image
@@ -280,7 +281,7 @@ class Tour extends Model
 
     public function getTourByDestination($destination_id, $tour_id)
     {
-        return $this->where('id', '!=', $tour_id)->where('destination_id', $destination_id)->latest()->take(6)->get();
+        return $this->where('id', '!=', $tour_id)->where('status', 1)->where('destination_id', $destination_id)->latest()->take(6)->get();
     }
 
     public function filter($request)

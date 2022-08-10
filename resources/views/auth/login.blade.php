@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
-    <title>Xtreme admin Template - The Ultimate Multipurpose admin template</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/logo-2.png') }}">
+    <title>Ngao du Viet Nam</title>
     <!-- Custom CSS -->
     <link href="{{ asset('xtreme/dist/css/style.min.css') }}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -43,8 +43,8 @@
             <div class="auth-box">
                 <div id="loginform">
                     <div class="logo">
-                        <span class="db"><img src="{{ asset('xtreme/assets/images/logo-icon.png') }}" alt="logo" /></span>
-                        <h5 class="font-medium mb-3">Sign In to Admin</h5>
+                        <span class="db"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo-2.png') }}" alt="homepage" class="dark-logo" /></a></span>
+                        <h5 class="font-medium mb-3">Sign In</h5>
                     </div>
                     <!-- Form -->
                     <div class="row">
@@ -81,12 +81,14 @@
                                 <div class="form-group row">
                                     <div class="col-md-12">
                                         <div class="custom-control custom-checkbox">
-                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                            <label class="custom-control-label" for="customCheck1">Remember me</label>
+                                            <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                            <label class="form-check-label custom-control-label" for="remember">
+                                                {{ __('Remember me') }}
+                                            </label>
                                         
                                             @if (Route::has('password.request'))
-                                                <a class="btn btn-link text-dark float-right" href="{{ route('password.request') }}">
-                                                    <i class="fa fa-lock mr-1"></i> Forgot pwd?
+                                                <a class="text-dark float-right" href="{{ route('password.request') }}">
+                                                    <i class="fa fa-lock mr-1"></i> Forgot password?
                                                 </a>
                                             @endif    
                                         </div>

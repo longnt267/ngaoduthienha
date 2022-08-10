@@ -30,7 +30,7 @@
                     <form action="{{ route('home.search') }}" class="form-search">
                         
                         <div class="form-search-item">
-                            <h4>{{ __('Khám phá vẻ đẹp Việt Nam') }}</h4>
+                            <h4>{{ __('Discover the beauty of Vietnam') }}</h4>
                         </div>
                         <div class="form-search-item wrap-input">
                             <img src="{{ asset('assets/icons/outline/search.png') }}">
@@ -68,7 +68,7 @@
                     <div class="wrap-features-1">
                         <div class="wrap-ft-1-top">
                             <img src="assets/images/Ellipse-13.png">
-                            <span>{{ __("Nổi bật") }}</span>
+                            <span>{{ __("Features") }}</span>
                         </div>
                         <div class="wrap-ft-1-bot">
                             <span>{{ $tours->count() }}+ <p>tours</p></span>

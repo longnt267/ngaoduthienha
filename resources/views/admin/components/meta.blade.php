@@ -6,7 +6,7 @@
 <meta name="author" content="">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Favicon icon -->
-<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('xtreme/assets/images/favicon.png') }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/logo-2.png') }}">
 <title>@yield('title')</title>
 <!--c3 CSS -->
 <link href="{{ asset('xtreme/assets/extra-libs/c3/c3.min.css') }}" rel="stylesheet">

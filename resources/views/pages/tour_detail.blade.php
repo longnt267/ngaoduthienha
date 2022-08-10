@@ -158,16 +158,24 @@
                             @endif
                         </div>
                         <div class="section">
-                            <div class="sect-title">360° Panoramic Images and Videos</div>
-                            @if (empty($tour->image_360) || empty($tour->video))
+                            <div class="sect-title">360° Panoramic Images</div>
+                            @if (empty($tour->image_360))
                                 <strong class="mt-5">Updating...</strong>
                             @else
                                 <div class="img-360">
                                     <iframe src="{{ $tour->image_360 }}"></iframe>
-                                    <iframe width="420" height="345" src="{{ $tour->video }}"></iframe>
                                 </div>
                             @endif
-
+                        </div>
+                        <div class="section">
+                            <div class="sect-title">Videos</div>
+                            @if (empty($tour->video))
+                                <strong class="mt-5">Updating...</strong>
+                            @else
+                                <div class="img-360">
+                                    {!! $tour->video !!}
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="ct-detail display" id="addtional-info">
@@ -175,7 +183,7 @@
                             @if (empty($tour->addtional_info))
                                 <strong class="mt-5">Updating...</strong>
                             @else
-                                {{ $tour->addtional_info }}
+                                {!! $tour->addtional_info !!}
                             @endif
                         </div>
                         <div class="section">
